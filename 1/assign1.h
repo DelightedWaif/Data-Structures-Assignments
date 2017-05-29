@@ -1,3 +1,5 @@
+
+//struct to hold the appropreate values
 struct array{
 	int* array1;
 	int size;

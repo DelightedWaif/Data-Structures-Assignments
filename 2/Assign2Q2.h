@@ -17,11 +17,7 @@ virtual bool isEmpty() const = 0;
 virtual void print() const = 0;
 };
 
-class node{
-  public:
-    node* next=nullptr;
-    int value;
-};
+
 
 class LLQueue : public Queue{
 
@@ -35,30 +31,32 @@ class LLQueue : public Queue{
     int dequeue() ;
     bool isEmpty() const ;
     void print() const;
-    node* first = nullptr;
-    node* last= nullptr;
+    LLQueue* first = nullptr;
+    LLQueue* last= nullptr;
+    LLQueue* next = nullptr;
+    int value;
 };
 
 void LLQueue::enqueue(int e){
-  node* newNode = new node;
-  newNode->value = e;
+  LLQueue* newLLQueue = new LLQueue;
+  newLLQueue->value = e;
   if(first==nullptr){
-    first = newNode;
-    last = newNode->next;
+    first = newLLQueue;
+    last = newLLQueue->next;
   }
   else{
-    last->next = newNode;
+    last->next = newLLQueue;
 
   }
-  last = newNode;
+  last = newLLQueue;
 }
 
 int  LLQueue::dequeue(){
-    node* newNode = new node;
+    LLQueue* newLLQueue = new LLQueue;
 
     int i = first->value;
 
-    newNode = first;
+    newLLQueue = first;
 
     first = first->next;
 
@@ -76,13 +74,13 @@ void  LLQueue::print() const{
     return;
   }
 
-  node* Before = new node;
-  node* After = new node;
+  LLQueue* Before = new LLQueue;
+  LLQueue* After = new LLQueue;
   Before = first;
    while(Before->next!=nullptr){
      std::cout<< Before->value<<std::endl;
      After = Before;
-     Before= Before->next;
+     Before = Before->next;
    }
    if(Before->next==nullptr){
      std::cout<<Before->value<<std::endl;

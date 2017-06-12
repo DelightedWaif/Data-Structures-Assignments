@@ -3,10 +3,8 @@ class node;
 
 template<class T>
 class node{
-  node();
-  ~node();
   public:
     node<T>* next = nullptr;
-    int count;
+    int count=0;
     T funStuff;
 };

@@ -34,28 +34,29 @@ class QueueStack: public Stack{
       LLQueue bottom;
 };
 
-void QueueStack::push(int e){
+void QueueStack::push(int e){  //O(1) only perfoms one operation not dependant on number of elements
 
   bottom.enqueue(e);
-  bottom.first = top.last;
-  top.first = bottom.last;
+
 }
 int QueueStack::pop(){
-  bottom.first = top.last;
-  top.first = bottom.last;
-  top.dequeue();
+  while(bottom.first->next!=nullptr){//O(n) changes based on how many elements in bottom
+    top.enqueue(bottom.dequeue());
+  }
+  int i= bottom.dequeue();
+  LLQueue temp; //Switches the names to avoid seg fault
+  temp = top;
+  top = bottom;
+  bottom = temp;
+  return i; //returns popped value
 }
-bool QueueStack::isEmpty() const{
+bool QueueStack::isEmpty() const{ //O(1) not dependant on elements
   if(bottom.isEmpty() and top.isEmpty()){
     return true;
   }
   return false;
 }
-void QueueStack::print() const{
-  if(bottom.first==nullptr){
-  std::cout<< top.first<<std::endl;
-    top.print();
-  }
-  else
+void QueueStack::print() const{ //O(n) changes based on number of elements
+
     bottom.print();
-}
+  }

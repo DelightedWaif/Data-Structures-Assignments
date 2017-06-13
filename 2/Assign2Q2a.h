@@ -32,7 +32,7 @@ class LLQueue : public Queue{
     bool isEmpty() const ;
     void print() const;
     LLQueue* first = nullptr;
-    LLQueue* last= nullptr;
+    LLQueue* last = nullptr;
     LLQueue* next = nullptr;
     int value;
 };

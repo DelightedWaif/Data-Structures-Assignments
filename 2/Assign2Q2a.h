@@ -5,7 +5,14 @@ class Queue
 public:
 // c'tor and d'tor
 Queue() { }
-virtual~Queue() { }
+virtual ~Queue() {
+  first = nullptr;
+  last = nullptr;
+  next = nullptr;
+  delete next;
+  delete last;
+  delete first;
+ }
 // pre-condition:  given an integer 'e'
 // post-condition: the queue will contain 'e' at one end of the data structure
 virtual void enqueue(int e) = 0;

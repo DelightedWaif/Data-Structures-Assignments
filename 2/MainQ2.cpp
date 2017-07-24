@@ -1,4 +1,4 @@
-#include"assign23.h"
+#include"assign2Q2b.h"
 #include<iostream>
 using namespace std;
 
@@ -15,6 +15,7 @@ int main(){
   // test.print();
   test.push(3);
   test.print();
+  cout<<endl;
   // cout<<test.isEmpty()<<endl;
   test.pop();
   // test.print();

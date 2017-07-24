@@ -1,5 +1,5 @@
 #include<iostream>
-#include"Assign2Q2.h"
+#include"Assign2Q2a.h"
 
 // Pure virtual abstract base class representing a minimal stack
 class Stack

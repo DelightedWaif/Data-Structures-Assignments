@@ -7,7 +7,8 @@ class Stack
 public:
 // c'tor and d'tor
 Stack() { }
-virtual ~Stack() { }
+virtual ~Stack() {  
+}
 // pre-condition: given an integer 'e'
 // post-condition: the stack will contain 'e' at the top of the data structure
 virtual void push(int e) = 0;

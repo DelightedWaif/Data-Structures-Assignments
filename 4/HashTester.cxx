@@ -17,11 +17,11 @@ int main(int ac, char* av[])
   //   code = 13579
   // FIXME
   std::function<int(int)> concatEven = [](int a) {
-    string name = to_string(a);
-    for(int i=1; i<name.length() and name.length()!=5; i++){
+    string name = to_string(a);   //converts to string
+    for(int i=1; i<name.length() and name.length()!=5; i++){//eliminates oddn values
         name.erase(i,1);
     }
-    return stoi(name);
+    return stoi(name);  //converts to int
   };
 
   // Create a lamdba function that takes an int (the key) and returns
@@ -31,12 +31,12 @@ int main(int ac, char* av[])
   //   code = 2468
   // FIXME
   std::function<int(int)> concatOdd = [](int a) {
-    string name = to_string(a);
+    string name = to_string(a); //converts to string
     for(int i = 0; i < name.length() and name.length()!=4; i++){
-        name.erase(i,1);
+        name.erase(i,1);    //erases even values
       }
     // cout<<stoi(name)<<endl;
-    return stoi(name);
+    return stoi(name);  //converts to int
   };
 
   // concat even digits, chaining
@@ -56,42 +56,42 @@ int main(int ac, char* av[])
   ifstream f;
   f.open("students.txt");
   string value[101];
-  string tempkey[101];
+  string tempkey[101];  //sets up reading from .txt file
   int key[101];
-  for(int i=0; i<100;i++){
+  for(int i=0; i<100;i++){  //reads from file and stores it in arrays
     getline(f, tempkey[i],' ');
     getline(f, value[i],'\n');
     cout<<i<<"   "<<tempkey[i]<<endl;
     key[i] = stoi(tempkey[i]);
   }
 
-  for(int i =0; i<100;i++){
+  for(int i =0; i<100;i++){ //inserts values in hash tables
     h1.insert(key[i],value[i]);
     h2.insert(key[i],value[i]);
     h3.insert(key[i],value[i]);
     h4.insert(key[i],value[i]);
   }
 
-  cout<<"Finding Tia1:"<<*h1.find(201103221)<<endl;
+  cout<<"Finding Tia1:"<<*h1.find(201103221)<<endl; //tests find
   cout<<"Finding Tia2:"<<*h2.find(201103221)<<endl;
   cout<<"Finding Tia3:"<<*h3.find(201103221)<<endl;
   cout<<"Finding Tia4:"<<*h4.find(201103221)<<endl;
   cout<<"Printing h1:"<<endl;
-  h1.print();
+  h1.print(); //tests print
   cout<<"Printing h2:"<<endl;
-  h2.print();
+  h2.print();//tests print
   cout<<"Printing h3:"<<endl;
-  h3.print();
+  h3.print();//test print
   cout<<"Printing h4:"<<endl;
   h4.print();
   cout<<"keys examined h1: ";
-  cout<<h1.totalKeysExamined()<<endl;
+  cout<<h1.totalKeysExamined()<<endl; //keys examined should be around 100
   cout<<"keys examined h2: ";
-  cout<<h2.totalKeysExamined()<<endl;
+  cout<<h2.totalKeysExamined()<<endl;//keys examined sould be around 150
   cout<<"keys examined h3: ";
-  cout<<h3.totalKeysExamined()<<endl;
+  cout<<h3.totalKeysExamined()<<endl;//keys examined should be around 100
   cout<<"keys examined h4: ";
-  cout<<h4.totalKeysExamined()<<endl;
+  cout<<h4.totalKeysExamined()<<endl;//keys examined sould be around 150
 
 
 

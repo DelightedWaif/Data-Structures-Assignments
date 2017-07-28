@@ -15,8 +15,8 @@ class HashWithQuadratic : public HashTable<K,V>
     HashWithQuadratic<K,V>(std::function<int(K)> hc)
     : hashcode(hc), size(0)
      {
-        for (int i=0; i<size; i++)
-          data[i]=nullptr;
+        for (int i=0; i<capacity; i++)
+          data[i]=nullptr;  //sets array values to null
       }
 
     // Add key/value pair to the hashtable by using 'key' to determine
@@ -25,17 +25,17 @@ class HashWithQuadratic : public HashTable<K,V>
     // post-condition: 'value' is added at position determined by 'key'
     bool insert(const K& key, const V& value) override
     {
-      if(size==capacity){
+      if(size==capacity){ //if full dont add
         return false;
       }
-      int check = hashcode(key)%capacity;
-      for(int i=1; data[check]!= nullptr; i++){
+      int check = hashcode(key)%capacity; //get key from hashcode
+      for(int i=1; data[check]!= nullptr; i++){ //check for empty spot
         examined++;
         check = (check + (i*i-i)/2)%capacity;
       }
 
       examined++;
-      data[check] = new HTEntry(key, value);
+      data[check] = new HTEntry(key, value);  //add to empty spot
       size++;
       return true;
     }
@@ -44,11 +44,11 @@ class HashWithQuadratic : public HashTable<K,V>
     // post-condition: the value associated with 'key', else nullptr
     const V* find(const K& key) override
     {
-      int check = hashcode(key)%capacity;
-      for(int i=0; data[check]!=nullptr; i++){
+      int check = hashcode(key)%capacity;//get key from hashcode
+      for(int i=0; data[check]!=nullptr; i++){//search hashtable for key
         examined++;
         if(data[check]->key==key){
-          return &data[check]->value;
+          return &data[check]->value; //return the arrporpeate value
         }
         check = (check + (i*i-i)/2)%capacity;
       }
@@ -59,7 +59,7 @@ class HashWithQuadratic : public HashTable<K,V>
     // post-condition: return the load factor; hashtable is not modified
     float loadFactor() const override
     {
-      return size/capacity;
+      return size/capacity; //gets load factor
     }
 
     // pre-condition:  a valid hashtable
@@ -67,7 +67,7 @@ class HashWithQuadratic : public HashTable<K,V>
     //                 hashtable is not modified
     int totalKeysExamined() const override
     {
-      return examined;
+      return examined;  //gets keys examined
     }
 
     // pre-condition:  a valid hashtable
@@ -77,7 +77,7 @@ class HashWithQuadratic : public HashTable<K,V>
 
       for(int i=0; i<capacity; i++){
         if(data[i]!= nullptr)
-          cout<<"data["<<" Key:"<<data[i]->key<<", Value:"<<data[i]->value<<"]"<<endl;
+          cout<<"data["<<" Key:"<<data[i]->key<<", Value:"<<data[i]->value<<"]"<<endl;  //prints all of the values in the hashtable
       }
     }
 

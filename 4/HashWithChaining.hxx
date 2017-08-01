@@ -25,15 +25,15 @@ class HashWithChaining : public HashTable<K,V>
     // post-condition: 'value' is added at position determined by 'key'
     bool insert(const K& key, const V& value) override
     {
-      if(capacity==size){
+      if(capacity==size){ //if full dont add
         return false;
       }
-      int check = hashcode(key)%capacity;
+      int check = hashcode(key)%capacity; //gets key from hashcode
       examined++;
       if(data[check].empty()){
         size++;
       }
-      data[check].push_back(HTEntry(key,value));
+      data[check].push_back(HTEntry(key,value));  //adds node to the vector
       return true;
     }
 
@@ -41,10 +41,10 @@ class HashWithChaining : public HashTable<K,V>
     // post-condition: the value associated with 'key', else nullptr
     const V* find(const K& key) override
     {
-      int check = hashcode(key)%capacity;
+      int check = hashcode(key)%capacity; ////gets key from hashcode
       for(int i=0; i<check; i++){
         examined++;
-        if(key==data[check][i].key){
+        if(key==data[check][i].key){  //returns proper value
           return &data[check][i].value;
         }
       }
@@ -54,7 +54,7 @@ class HashWithChaining : public HashTable<K,V>
     // post-condition: return the load factor; hashtable is not modified
     float loadFactor() const override
     {
-      return size/capacity;
+      return size/capacity;//returns load factor
     }
 
     // pre-condition:  a valid hashtable
@@ -62,7 +62,7 @@ class HashWithChaining : public HashTable<K,V>
     //                 hashtable is not modified
     int totalKeysExamined() const override
     {
-      return examined;
+      return examined;//returns number of keys examined
     }
 
     // pre-condition:  a valid hashtable
@@ -72,7 +72,7 @@ class HashWithChaining : public HashTable<K,V>
       for(auto i=0; i<capacity;i++){
         if(!data[i].empty()){
           for(auto j=0; j<data[i].size();j++){
-            cout<<"data["<<" Key:"<<data[i][j].key<<", Value:"<<data[i][j].value<<"]"<<endl;
+            cout<<"data["<<" Key:"<<data[i][j].key<<", Value:"<<data[i][j].value<<"]"<<endl; //prints out all valid keys and values
           }
         }
       }
